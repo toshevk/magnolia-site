@@ -6,5 +6,5 @@ def index(request):
         'title': 'Home'
     }
     return render(request=request,
-                  template_name='core/base.html',
+                  template_name='core/index.html',
                   context=home_index_context)
