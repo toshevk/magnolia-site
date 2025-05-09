@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h1>Our Rooms</h1>
+<div class="container">
+    <div class="row">
+        {% for room in room_list %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="{{ room.name }} photo">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ room.name }}</h5>
+                        <p class="card-text">{{ room.description }}</p>
+                        <p class="card-text">Fits {{ room.capacity }} people.</p>
+                        <a href="#" class="btn btn-secondary">View Details</a>
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
