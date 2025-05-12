@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h1>{{ room.name }}</h1>
+<div class="container">
+    <!--    Images gallery-->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <img src="..." class="img-fluid" alt="{{ room.name }} photo">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ room.name }}</h5>
+                    <p class="card-text"><strong>Description:</strong> {{ room.description }}</p>
+                    <p class="card-text"><strong>Capacity:</strong> {{ room.capacity }} people</p>
+                    <p class="card-text"><strong>Bed Configuration:</strong> {{ room.bed_configuration }}</p>
+                    <p class="card-text"><strong>Layout:</strong> {{ room.layout }}</p>
+                    <p class="card-text"><strong>Amenities:</strong></p>
+                    <ul>
+                        {% for amenity in amenities %}
+                            <li>{{ amenity }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

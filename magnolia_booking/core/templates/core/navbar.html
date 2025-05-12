@@ -9,8 +9,18 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'core:homepage' %}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'rooms:room-list' %}">Rooms</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Rooms
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'rooms:room-list' %}">All Rooms</a></li>
+                        <li><hr class="dropdown-divider"></li>
+<!--                        Find a way to implement room.id dynamically instead of hard-coding-->
+                        <li><a class="dropdown-item" href="{% url 'rooms:room-detail' 7 %}">Sunset Studio</a></li>
+                        <li><a class="dropdown-item" href="{% url 'rooms:room-detail' 8 %}">Sunrise Studio</a></li>
+                        <li><a class="dropdown-item" href="{% url 'rooms:room-detail' 9 %}">Palm Apartment</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>

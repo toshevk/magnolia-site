@@ -1,0 +1,5 @@
+/magnolia_booking/rooms/migrations/0001_initial.py
+/magnolia_booking/core/migrations/0002_delete_room.py
+/magnolia_booking/rooms/migrations/0002_reservation.py
+/magnolia_booking/rooms/migrations/0003_room_amenities_room_bed_configuration_room_layout.py
+/.idea/codeStyles/codeStyleConfig.xml
