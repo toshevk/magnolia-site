@@ -7,7 +7,7 @@ def make_reservation(request):
         form = ReservationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('reservation_success')
+            return redirect('reservations:reservation_success')
     else:
         form = ReservationForm()
 
@@ -17,3 +17,8 @@ def make_reservation(request):
     return render(request=request,
                   template_name="reservations/reservation_form.html",
                   context=make_reservation_context)
+
+def reservation_success(request):
+    return render(request=request,
+                  template_name="reservations/reservation_success.html",
+                  context={})
