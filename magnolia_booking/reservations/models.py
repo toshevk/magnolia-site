@@ -2,6 +2,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from rooms.models import Room
 from datetime import timedelta
+from django.utils import timezone
 
 # Create your models here.
 class Reservation(models.Model):
@@ -11,6 +12,7 @@ class Reservation(models.Model):
     check_in = models.DateField()
     check_out = models.DateField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    created_on = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.check_in}: {self.guest_name} in {self.room} for {self.price}."

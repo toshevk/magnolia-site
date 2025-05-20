@@ -1,8 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ReservationForm
+from .models import Room
 
 # Create your views here.
-def make_reservation(request):
+def make_reservation(request, pk=None):
+    room = None
+
+    if pk is not None:
+        room = get_object_or_404(Room, )
+
     if request.method == "POST":
         form = ReservationForm(request.POST)
         if form.is_valid():
