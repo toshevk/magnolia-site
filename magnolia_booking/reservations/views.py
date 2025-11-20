@@ -7,18 +7,24 @@ def make_reservation(request, pk=None):
     room = None
 
     if pk is not None:
-        room = get_object_or_404(Room, )
+        room = get_object_or_404(Room, pk=pk)
 
     if request.method == "POST":
-        form = ReservationForm(request.POST)
+        if room:
+            form = ReservationForm(request.POST, initial={"room": room})
+        else:
+            form = ReservationForm(request.POST)
         if form.is_valid():
+            reservation = form.save(commit=False)
+            reservation.room = room
             form.save()
             return redirect('reservations:reservation_success')
     else:
         form = ReservationForm()
 
     make_reservation_context = {
-        "form": form
+        "form": form,
+        "room": room
     }
     return render(request=request,
                   template_name="reservations/reservation_form.html",

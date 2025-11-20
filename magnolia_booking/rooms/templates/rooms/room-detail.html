@@ -25,7 +25,7 @@
                             <li>{{ amenity }}</li>
                         {% endfor %}
                     </ul>
-                    <a href="#" class="btn btn-primary">Book Now</a>
+                    <a href="{% url 'reservations:make_reservation_select_room' room.pk %}" class="btn btn-primary">Book Now</a>
                 </div>
             </div>
         </div>
