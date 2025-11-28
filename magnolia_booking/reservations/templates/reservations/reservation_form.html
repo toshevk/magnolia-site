@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 
 {% block content %}
-    <h2>Make a Reservation</h2>
+    <h2>Make a Reservation {% if room %}for {{ room.name }}{% endif %}</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
