@@ -1,8 +1,30 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ReservationForm
+from django.urls import reverse
+from urllib.parse import urlencode
+from .forms import ReservationForm, BookingSearchForm
 from .models import Room
 
-# Create your views here.
+
+def booking_search(request):
+    form = BookingSearchForm(request.GET or None)
+    if form.is_valid():
+        check_in = form.cleaned_data['check_in']
+        check_out = form.cleaned_data['check_out']
+        group_size = form.cleaned_data['group_size']
+
+        base_url = reverse("booking_results")
+        query = urlencode({
+            'check_in': check_in,
+            'check_out': check_out,
+            'group_size': group_size,
+        })
+        return redirect(f"{base_url}?{query}")
+
+    return render(request=request,
+                  template_name="",
+                  context={})
+
+
 def make_reservation(request, pk=None):
     room = None
 
@@ -29,7 +51,7 @@ def make_reservation(request, pk=None):
         "room": room
     }
     return render(request=request,
-                  template_name="reservations/reservation_form.html",
+                  template_name="reservations/reservation_form_step1.html",
                   context=make_reservation_context)
 
 def reservation_success(request):

@@ -1,0 +1,30 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<div class="container mt-5" style="max-width: 600px;">
+    <h2 class="mb-4 text-center">Make a Reservation {% if room %}for {{ room.name }}{% endif %}</h2>
+
+    <form method="get">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.check_in.label_tag }}
+            {{ form.check_in }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.check_out.label_tag }}
+            {{ form.check_out }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.group_size.label_tag }}
+            {{ form.group_size }}
+        </div>
+
+        <button class="btn btn-primary w-100" type="submit">
+            Check Availability
+        </button>
+    </form>
+</div>
+{% endblock %}
