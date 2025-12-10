@@ -6,11 +6,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
         <title>{% block title %}{% endblock %} | Magnolia</title>
+
+        <style>
+            :root {
+                --primary: #59359a;
+                --secondary: #c5b3e6;
+                --soft-white: #fcedf2;
+                --primary-contrast: #ffffff;
+                --hero-overlay: rgba(89, 53, 154, 0.45);
+            }
+
+            body {
+                background: url({% static 'images/hero.jpg' %}) center/cover no-repeat;
+            }
+
+            .custom-background {
+                background-color: rgba(161, 161, 161, 0.8);
+            }
+        </style>
     </head>
     <body>
         {% include 'core/navbar.html' %}
 
-        <div class="container w-lg mx-auto">
+        <div class="container w-lg mx-auto custom-background">
             {% block content %}
             {% endblock %}
         </div>
