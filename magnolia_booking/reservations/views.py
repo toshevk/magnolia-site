@@ -21,8 +21,25 @@ def booking_search(request):
         return redirect(f"{base_url}?{query}")
 
     return render(request=request,
-                  template_name="",
-                  context={})
+                  template_name="reservations/reservation_form_step1.html",
+                  context={
+                      'form': form,
+                  })
+
+def booking_result(request):
+    room_requirements = {
+        "check_in": request.GET.get("check_in"),
+        "check_out": request.GET.get("check_out"),
+        "group_size": request.GET.get("group_size"),
+    }
+
+    rooms = Room.objects.filter(capacity__gte=room_requirements['group_size'])
+    return render(request=request,
+                  template_name="reservations/reservation_form_step2.html",
+                  context={
+                      'room_requirements': room_requirements,
+                      'rooms': rooms,
+                  })
 
 
 def make_reservation(request, pk=None):

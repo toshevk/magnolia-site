@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<div class="container mt-5" style="max-width: 600px;">
+    <h2 class="mb-4 text-center">Make a Reservation</h2>
+    <h4 class="mb-4 text-center">Available Rooms</h4>
+
+    <p>
+        From {{ room_requirements.check_in }} to {{ room_requirements.check_out }} for {{ room_requirements.group_size }}
+    </p>
+
+</div>
+{% endblock %}

@@ -5,7 +5,7 @@
 <div class="container mt-5" style="max-width: 600px;">
     <h2 class="mb-4 text-center">Make a Reservation {% if room %}for {{ room.name }}{% endif %}</h2>
 
-    <form method="get">
+    <form method="get" action="{% url 'reservations:booking_result' %}">
         {% csrf_token %}
         <div class="mb-3">
             {{ form.check_in.label_tag }}
