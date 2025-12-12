@@ -41,9 +41,58 @@ def booking_result(request):
                       'rooms': rooms,
                   })
 
+def booking_confirm(request, pk=None):
+    room = None
+    room_requirements = {
+        "check_in": request.GET.get("check_in"),
+        "check_out": request.GET.get("check_out"),
+        "group_size": request.GET.get("group_size"),
+    }
+
+    if pk is not None:
+        room = get_object_or_404(Room, pk=pk)
+
+    if request.method == "POST":
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            reservation = form.save(commit=False)
+            if room:
+                reservation.room = room
+
+            form.save()
+            return redirect('reservations:reservation_success')
+
+    #
+    #   OTKRIJ JA GRESKATA
+    #   VIDI STO PUSTA POST REQUESTOT DO MODEL FORM
+    #
+    #   MOZNO E INITIAL VREDNOSTITE
+    #
+
+    else:
+        if room:
+            form = ReservationForm(initial={"room": room,
+                                            "check_in": room_requirements['check_in'],
+                                            "check_out": room_requirements['check_out'],
+                                            "group_size": room_requirements['group_size']})
+        else:
+            form = ReservationForm()
+
+    return render(request=request,
+                  template_name="reservations:reservation_step3.html",
+                  context={
+                      'room': room,
+                      'form': form,
+                      'room_requirements': room_requirements,
+                  })
 
 def make_reservation(request, pk=None):
     room = None
+    room_requirements = {
+        "check_in": request.GET.get("check_in"),
+        "check_out": request.GET.get("check_out"),
+        "group_size": request.GET.get("group_size"),
+    }
 
     if pk is not None:
         room = get_object_or_404(Room, pk=pk)
@@ -68,7 +117,7 @@ def make_reservation(request, pk=None):
         "room": room
     }
     return render(request=request,
-                  template_name="reservations/reservation_form_step1.html",
+                  template_name="reservations/reservation_form.html",
                   context=make_reservation_context)
 
 def reservation_success(request):

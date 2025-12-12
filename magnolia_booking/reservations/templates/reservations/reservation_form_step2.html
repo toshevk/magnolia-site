@@ -9,6 +9,21 @@
     <p>
         From {{ room_requirements.check_in }} to {{ room_requirements.check_out }} for {{ room_requirements.group_size }}
     </p>
-
+    {% if rooms %}
+        {% for room in rooms %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4>{{ room.name }}</h4>
+                    <p>Capacity for {{ room.capacity }} guests</p>
+                    <a href="{% url 'reservations:make_reservation_select_room' room.pk %}?check_in={{ room_requirements.check_in }}&check_out={{ room_requirements.check_out }}&group_size={{ room_requirements.group_size }}">
+                        Book This Room
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No rooms available</p>
+        <p>Contact us to see what we can do for you</p>
+    {% endif %}
 </div>
 {% endblock %}
