@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.db import models
 from rooms.models import Room
 from datetime import timedelta
@@ -8,6 +9,9 @@ from django.utils import timezone
 class Reservation(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name="reservations")
     guest_name = models.CharField(max_length=100)
+    guest_telephone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    guest_telephone = models.CharField(validators=[guest_telephone_regex], max_length=17, default="DEFAULT PHONE VALUE", blank=True) # Validators should be a list
+    guest_email = models.EmailField(default='DEFAULT EMAIL VALUE', blank=False)
     group_size = models.IntegerField(default=1)
     check_in = models.DateField()
     check_out = models.DateField()
