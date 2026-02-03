@@ -14,7 +14,7 @@
                         <p class="card-text">Fits {{ room.capacity }} people.</p>
                         <div class="mx-auto">
                             <a href="{% url 'rooms:room-detail' room.id %}" class="btn btn-secondary">View Details</a>
-                            <a href="{% url 'reservations:make_reservation' %}" class="btn btn-primary">Book Now</a>
+                            <a href="{% url 'reservations:request_reservation' %}" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
