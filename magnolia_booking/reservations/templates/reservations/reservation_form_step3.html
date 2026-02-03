@@ -5,15 +5,15 @@
 <div class="container mt-5" style="max-width: 600px;">
     <h2 class="mb-4 text-center">Make a Reservation {% if room %}for {{ room.name }}{% endif %}</h2>
 
-    <form method="post">
-        {% csrf_token %}
-        <div class="mb-3">
+    <div class="mb-3">
+        <form method="post">
+            {% csrf_token %}
+
             {{ form.room }}
             {{ form.check_in }}
             {{ form.check_out }}
             {{ form.group_size }}
-        </div>
-        <div class="mb-3">
+
             {{ form.guest_name.label_tag }}
             {{ form.guest_name }}
 
@@ -22,11 +22,11 @@
 
             {{ form.guest_email.label_tag }}
             {{ form.guest_email }}
-        </div>
 
         <button class="btn btn-primary w-100" type="submit">
             Confirm reservation
         </button>
-    </form>
+        </form>
+    </div>
 </div>
 {% endblock %}
