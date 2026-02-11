@@ -1,4 +1,4 @@
-### Magnolia Rental Booking System
+# Magnolia Rental Booking System
 Django web application for managing short-term rental property bookings and availability calendar.
 
 ## About
@@ -12,14 +12,13 @@ Automated Workflows: Streamline check-in/check-out and booking confirmations
 Multi-language Support: Interface designed for international clientele
 
 ## Tech Stack
-
-# Backend:
+### Backend:
 Python 3
 Django (web framework)
 SQLite (database)
 Jinja2 (templating)
 
-# Frontend:
+### Frontend:
 HTML/CSS
 JavaScript
 Bootstrap (responsive design)
